@@ -1,0 +1,33 @@
+---
+title: "hml-GFP_phago"
+author: "Becca Belmonte"
+date: "2022-08-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Libraries
+```{r}
+library(readxl)
+library(tidyverse)
+```
+ 
+# Data import
+```{r}
+phagocytosis <- read_excel("~/Data/FACS/Flow/hml-GFP/phagocytosis.xlsx")
+```
+
+```{r}
+phagocytosis <- phagocytosis %>% 
+  separate(Sample, into = c("Sex", "Rep"), remove = FALSE)
+phagocytosis %>% 
+ggplot(aes(x = Sex, y = perc_phago_met_2)) +
+  geom_violin() +
+  geom_point()
+```
+
+ 
+ 
